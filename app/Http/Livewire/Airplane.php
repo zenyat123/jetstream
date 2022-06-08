@@ -22,6 +22,7 @@ class Airplane extends Component
     public $airplane_edit;
     public $line_edit;
     public $flight_edit;
+    public $image_edit;
     public $image;
     public $rand;
 
@@ -54,7 +55,8 @@ class Airplane extends Component
 
             "airplane" => $this->airplane,
             "line" => $this->line,
-            "flight" => $this->flight
+            "flight" => $this->flight,
+            "image" => ""
 
         ]);
 
@@ -80,7 +82,7 @@ class Airplane extends Component
         $this->airplane_edit = $airplane->airplane;
         $this->line_edit = $airplane->line;
         $this->flight_edit = $airplane->flight;
-        $this->image = $airplane->image;
+        $this->image_edit = $airplane->image;
 
     }
 
@@ -90,7 +92,7 @@ class Airplane extends Component
         if($this->image)
         {
 
-            Storage::delete($this->entity->image);
+            $this->entity->image ? Storage::delete($this->entity->image) : "";
 
             $image = $this->image->store("airplanes");
 
@@ -135,7 +137,7 @@ class Airplane extends Component
     public function destroy()
     {
 
-        Storage::delete($this->entity->image);
+        $this->entity->image ? Storage::delete($this->entity->image) : "";
 
         $this->entity->delete();
 

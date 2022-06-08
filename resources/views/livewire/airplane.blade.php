@@ -152,11 +152,27 @@
 
                         <figure>
 
-                            <img src = "{{ Storage::url($image) }}" class = "object-cover object-center">
+                            <img src = "{{ $image->temporaryUrl() }}" class = "object-cover object-center h-48">
 
                         </figure>
 
                     </div>
+
+                @else
+
+                    @if($image_edit)
+
+                        <div>
+
+                            <figure>
+
+                                <img src = "{{ Storage::url($image_edit) }}" class = "object-cover object-center h-48">
+
+                            </figure>
+
+                        </div>
+
+                    @endif
 
                 @endif
 
