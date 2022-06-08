@@ -68,21 +68,21 @@ class Airplane extends Component
 
     }
 
-    public function edit(Entity $airplane)
+    public function edit($id)
     {
 
         $this->modal_edit = true;
 
-        $this->entity = Entity::find($airplane->id);
+        $this->entity = Entity::find($id);
 
         $this->rand = rand();
 
         $this->reset("image");
 
-        $this->airplane_edit = $airplane->airplane;
-        $this->line_edit = $airplane->line;
-        $this->flight_edit = $airplane->flight;
-        $this->image_edit = $airplane->image;
+        $this->airplane_edit = $this->entity->airplane;
+        $this->line_edit = $this->entity->line;
+        $this->flight_edit = $this->entity->flight;
+        $this->image_edit = $this->entity->image;
 
     }
 
@@ -100,7 +100,7 @@ class Airplane extends Component
         else
         {
 
-            $image = "";
+            $image = $this->entity->image;
 
         }
 
@@ -121,12 +121,12 @@ class Airplane extends Component
 
     }
 
-    public function confirmDeletion(Entity $airplane)
+    public function confirmDeletion($id)
     {
 
         $this->modal_delete = true;
 
-        $this->entity = Entity::find($airplane->id);
+        $this->entity = Entity::find($id);
 
         $this->id_delete = $this->entity->id;
 
