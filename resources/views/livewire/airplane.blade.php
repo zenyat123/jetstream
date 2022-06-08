@@ -230,7 +230,7 @@
 
             <x-slot name="content">
 
-                Del aeroplano {{ $name }} 
+                Del aeroplano {{ $name }}
 
             </x-slot>
 
