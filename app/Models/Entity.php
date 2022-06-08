@@ -10,6 +10,6 @@ class Entity extends Model
 
     use HasFactory;
 
-    protected $fillable = ["airplane", "line", "flight"];
+    protected $fillable = ["airplane", "line", "flight", "image"];
 
 }

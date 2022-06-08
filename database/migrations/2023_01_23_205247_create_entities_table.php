@@ -17,6 +17,7 @@ return new class extends Migration
             $table->text("airplane");
             $table->text("line");
             $table->text("flight");
+            $table->text("image")->nullable();
             $table->timestamps();
 
         });

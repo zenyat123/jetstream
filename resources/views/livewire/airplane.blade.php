@@ -93,7 +93,7 @@
                                     <th class = "w-2/5 py-2">Avión</th>
                                     <th class = "w-1/5 py-2">Línea</th>
                                     <th class = "w-1/5 py-2">Vuelo</th>
-                                    <th class = "w-1/5 py-2">Acciones</th>
+                                    <th class = "w-1/5 py-2 text-center">Acciones</th>
 
                                 </div>
 
@@ -138,67 +138,97 @@
 
     </x-container>
 
-    <x-jet-dialog-modal wire:model="modal_edit">
+    @if($entity)
 
-        <x-slot name="title">Actualizar avión</x-slot>
+        <x-jet-dialog-modal wire:model="modal_edit" wire:key="modal-edit-{{ $entity->id }}">
 
-        <x-slot name="content">
+            <x-slot name="title">Actualizar avión</x-slot>
 
-            <div>
+            <x-slot name="content">
 
-                <x-jet-label>Avión</x-jet-label>
+                @if($image)
 
-                <x-jet-input type="text" wire:model="airplane_edit" class="w-full my-3"/>
+                    <div>
 
-            </div>
+                        <figure>
 
-            <div>
+                            <img src = "{{ Storage::url($image) }}" class = "object-cover object-center">
 
-                <x-jet-label>Línea</x-jet-label>
+                        </figure>
 
-                <x-jet-input type="text" wire:model="line_edit" class="w-full my-3"/>
+                    </div>
 
-            </div>
+                @endif
 
-            <div>
+                <div>
 
-                <x-jet-label>Vuelo</x-jet-label>
+                    <x-jet-label>Avión</x-jet-label>
 
-                <x-jet-input type="text" wire:model="flight_edit" class="w-full my-3"/>
+                    <x-jet-input type="text" wire:model="airplane_edit" class="w-full my-3"/>
 
-            </div>
+                </div>
 
-        </x-slot>
+                <div>
 
-        <x-slot name="footer">
+                    <x-jet-label>Línea</x-jet-label>
 
-            <x-jet-secondary-button wire:click="$set('modal_edit', false)" class="mr-2">Cerrar</x-jet-secondary-button>
+                    <x-jet-input type="text" wire:model="line_edit" class="w-full my-3"/>
 
-            <x-jet-button wire:click="update" wire:target="update" wire:loading.attr="disabled">Actualizar</x-jet-button>
+                </div>
 
-        </x-slot>
+                <div>
 
-    </x-jet-dialog-modal>
+                    <x-jet-label>Vuelo</x-jet-label>
 
-    <x-jet-dialog-modal wire:model="modal_delete">
+                    <x-jet-input type="text" wire:model="flight_edit" class="w-full my-3"/>
 
-        <x-slot name="title">Confirma la eliminación</x-slot>
+                </div>
 
-        <x-slot name="content">
+                <div>
 
-            Del aeroplano {{ $name }}
+                    <x-jet-label>Imagen</x-jet-label>
 
-        </x-slot>
+                    <x-jet-input type="file" wire:model="image" accept="image/*" class="mt-1" id="{{ $rand }}"/>
 
-        <x-slot name="footer">
+                </div>
 
-            <x-jet-secondary-button wire:click="$set('modal_delete', false)" class="mr-2">cerrar</x-jet-secondary-button>
+            </x-slot>
 
-            <x-jet-danger-button wire:click="destroy({{ $id_delete }})">eliminar</x-jet-danger-button>
+            <x-slot name="footer">
 
-        </x-slot>
+                <x-jet-secondary-button wire:click="$set('modal_edit', false)" class="mr-2">Cerrar</x-jet-secondary-button>
 
-    </x-jet-dialog-modal>
+                <x-jet-button wire:click="update" wire:target="update, image" wire:loading.attr="disabled">Actualizar</x-jet-button>
+
+            </x-slot>
+
+        </x-jet-dialog-modal>
+
+    @endif
+
+    @if($entity)
+
+        <x-jet-dialog-modal wire:model="modal_delete" wire:key="modal-delete-{{ $entity->id }}">
+
+            <x-slot name="title">Confirma la eliminación</x-slot>
+
+            <x-slot name="content">
+
+                Del aeroplano {{ $name }}
+
+            </x-slot>
+
+            <x-slot name="footer">
+
+                <x-jet-secondary-button wire:click="$set('modal_delete', false)" class="mr-2">cerrar</x-jet-secondary-button>
+
+                <x-jet-danger-button wire:click="destroy({{ $id_delete }})">eliminar</x-jet-danger-button>
+
+            </x-slot>
+
+        </x-jet-dialog-modal>
+
+    @endif
 
 </div>
 
