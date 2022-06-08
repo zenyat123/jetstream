@@ -22,27 +22,41 @@
 
             <x-slot name="form">
 
-                <div class = "col-start-1 col-span-3">
+                <div class = "col-span-3 space-y-3">
 
-                    <x-jet-label>Avión</x-jet-label>
+                    <div>
 
-                    <x-jet-input type="text" wire:model="airplane" class="w-full"/>
+                        <x-jet-label>Avión</x-jet-label>
+
+                        <x-jet-input type="text" wire:model="airplane" class="w-full"/>
+
+                    </div>
+
+                    <div>
+
+                        <x-jet-label>Línea</x-jet-label>
+
+                        <x-jet-input type="text" wire:model="line" class="w-full"/>
+
+                    </div>
+
+                    <div>
+
+                        <x-jet-label>Vuelo</x-jet-label>
+
+                        <x-jet-input type="text" wire:model="flight" class="w-full"/>
+
+                    </div>
 
                 </div>
 
-                <div class = "col-start-1 col-span-3">
+                <div class = "col-span-3">
 
-                    <x-jet-label>Línea</x-jet-label>
+                    <figure>
 
-                    <x-jet-input type="text" wire:model="line" class="w-full"/>
+                        <img src = "{{ asset('img/airs.webp') }}" class = "object-cover object-center rounded-xl">
 
-                </div>
-
-                <div class = "col-start-1 col-span-3">
-
-                    <x-jet-label>Vuelo</x-jet-label>
-
-                    <x-jet-input type="text" wire:model="flight" class="w-full"/>
+                    </figure>
 
                 </div>
 
